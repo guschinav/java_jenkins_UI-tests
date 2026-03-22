@@ -1,7 +1,6 @@
-package pages;
+package tests;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.And;
 import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.TableResultComponent;
