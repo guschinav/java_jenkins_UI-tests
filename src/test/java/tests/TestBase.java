@@ -15,7 +15,12 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
+
+
+
     RegistrationPage registrationPage = new RegistrationPage();
+
+
 
     @BeforeEach
     void addListener() {
@@ -26,17 +31,27 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
 
-        Configuration.baseUrl = "https://demoqa.com";
+        String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        String remote = "https://" + System.getProperty("login", "user1") + ":"
+                + System.getProperty("password", "1234") + "@"
+                + System.getProperty("remoteURL", "selenoid.autotests.cloud/wd/hub");
+        String browser = System.getProperty("browser", "chrome");
+        String browserVersion = System.getProperty("browserVersion", "128.0");
+
+        boolean videoEnabled = Boolean.parseBoolean(System.getProperty("video.enabled", "false"));
+
+        Configuration.baseUrl = baseUrl;
         Configuration.browserSize = "1920x1080";
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "128.0";
+        Configuration.browser = browser;
+        Configuration.browserVersion = browserVersion;
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+        capabilities.setCapability("selenoid:options", Map.of(
                 "enableVNC", true,
-                "enableVideo", true
+                "enableVideo", videoEnabled
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        Configuration.remote = remote;
     }
 
 
