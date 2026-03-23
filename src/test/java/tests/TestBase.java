@@ -40,7 +40,6 @@ public class TestBase {
 
         boolean videoEnabled = Boolean.parseBoolean(System.getProperty("video.enabled", "false"));
 
-        Configuration.remote= remote;
         Configuration.baseUrl = baseUrl;
         Configuration.browserSize = "1920x1080";
 
