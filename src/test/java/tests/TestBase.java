@@ -40,10 +40,13 @@ public class TestBase {
 
         boolean videoEnabled = Boolean.parseBoolean(System.getProperty("video.enabled", "false"));
 
+        Configuration.remote= remote;
         Configuration.baseUrl = baseUrl;
         Configuration.browserSize = "1920x1080";
+
         Configuration.browser = browser;
         Configuration.browserVersion = browserVersion;
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
                 "enableVNC", true,
