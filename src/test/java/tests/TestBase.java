@@ -16,6 +16,9 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
 
     static boolean videoEnabled;
+    static boolean screenshotEnabled;
+    static boolean pageSourceEnabled;
+    static boolean logsEnabled;
 
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -34,7 +37,10 @@ public class TestBase {
         String browser = System.getProperty("browser", "chrome");
         String browserVersion = System.getProperty("browserVersion", "128.0");
 
-        boolean videoEnabled = Boolean.parseBoolean(System.getProperty("videoEnabled", "false"));
+        videoEnabled = Boolean.parseBoolean(System.getProperty("videoEnabled", "false"));
+        screenshotEnabled = Boolean.parseBoolean(System.getProperty("screenshotEnabled", "true"));
+        pageSourceEnabled = Boolean.parseBoolean(System.getProperty("pageSourceEnabled", "true"));
+        logsEnabled = Boolean.parseBoolean(System.getProperty("logsEnabled", "true"));
 
         Configuration.baseUrl = baseUrl;
         Configuration.browserSize = "1920x1080";
