@@ -60,10 +60,18 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-//        Attach.attachAsText("Some file", "Some content");
-        Attach.browserConsoleLogs();
+        if (screenshotEnabled) {
+            Attach.screenshotAs("Last screenshot");
+        }
+
+        if (pageSourceEnabled) {
+            Attach.pageSource();
+        }
+
+        if (logsEnabled) {
+            Attach.browserConsoleLogs();
+        }
+
         if (videoEnabled) {
             Attach.addVideo();
         }
