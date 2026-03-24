@@ -15,18 +15,14 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
-
-
+    static boolean videoEnabled;
 
     RegistrationPage registrationPage = new RegistrationPage();
-
-
 
     @BeforeEach
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
-
 
     @BeforeAll
     static void beforeAll() {
@@ -56,14 +52,15 @@ public class TestBase {
         Configuration.remote = remote;
     }
 
-
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
 //        Attach.attachAsText("Some file", "Some content");
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+        if (videoEnabled) {
+            Attach.addVideo();
+        }
         closeWebDriver();
 
     }
