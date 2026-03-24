@@ -38,7 +38,7 @@ public class TestBase {
         String browser = System.getProperty("browser", "chrome");
         String browserVersion = System.getProperty("browserVersion", "128.0");
 
-        boolean videoEnabled = Boolean.parseBoolean(System.getProperty("video.enabled", "false"));
+        boolean videoEnabled = Boolean.parseBoolean(System.getProperty("videoEnabled", "false"));
 
         Configuration.baseUrl = baseUrl;
         Configuration.browserSize = "1920x1080";
